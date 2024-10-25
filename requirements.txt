@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+requests_oauthlib
+python-dotenv
+jinja2
+aiofiles
