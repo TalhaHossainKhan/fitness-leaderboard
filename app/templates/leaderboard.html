@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Leaderboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
 </head>
 <body>
     <h1>Fitness Leaderboard</h1>
     <div class="button-container">
-        <button onclick="authorize()" class="auth-button">Authorize with Strava</button>
+        <a href="/authorize" class="auth-button">Authorize with Strava</a>
     </div>
-    <table id="leaderboard">
+    <table>
         <thead>
             <tr>
                 <th>Rank</th>
@@ -19,9 +19,15 @@
                 <th>Total Distance (km)</th>
             </tr>
         </thead>
-        <tbody id="leaderboard-body">
+        <tbody>
+            {% for athlete in leaderboard %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ athlete.firstname }} {{ athlete.lastname }}</td>
+                <td>{{ "%.2f"|format(athlete.total_distance / 1000) }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
-    <script src="app.js"></script>
 </body>
 </html>

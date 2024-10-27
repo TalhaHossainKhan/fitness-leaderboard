@@ -10,7 +10,7 @@ class StravaAuth:
     def __init__(self):
         self.client_id = os.getenv('CLIENT_ID')
         self.client_secret = os.getenv('CLIENT_SECRET')
-        self.redirect_url = os.getenv('REDIRECT_URL')
+        self.redirect_url = os.getenv('REDIRECT_URL', 'http://localhost:8000/callback')
         self.scope = "activity:read_all,profile:read_all"
         self.auth_base_url = "https://www.strava.com/oauth/authorize"
         self.token_url = "https://www.strava.com/api/v3/oauth/token"
